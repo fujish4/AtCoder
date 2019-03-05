@@ -7,5 +7,4 @@ for i in range(1, min(A, B)+1):
 
 ans.sort(reverse=True)
 
-print(ans)
 print(ans[K-1])
