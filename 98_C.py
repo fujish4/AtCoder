@@ -2,7 +2,7 @@ N = int(input())
 S = input()
 
 cost = S.count("E")
-ans = S.count("E")
+ans = cost
 
 for s in S:
     if s == "E":
