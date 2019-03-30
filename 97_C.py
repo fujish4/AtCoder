@@ -1,20 +1,19 @@
 s = input()
 K = int(input())
-
-li = sorted(list(set(s)))
-print(li)
-hitList = []
  
-def oneMoreChar(moji):
-    hitList.append(moji)
-    if len(hitList) < K:
-        for i in range(len(li)):
-            if moji+li[i] in s:
-                return oneMoreChar(moji+li[i])
+li = sorted(list(set(s)))
+result = []
+
+def substring(l):
+    result.append(l)
+    if len(result) < K:
+        for m in li:
+            if l+m in s:
+                return substring(l+m)
     else:
         pass
- 
-for char in li:
-    oneMoreChar(char)
- 
-print(hitList[K-1])
+
+for l in li:
+    substring(l)
+
+print(result[K-1])
