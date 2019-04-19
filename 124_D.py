@@ -1,28 +1,33 @@
-n, k = map(int, input().split())
-st = input() + "4"
-cnt = 1
-before = 3
-line = []
-ans = 0
-
-for s in st:
-    if s == before:
-        cnt +=1
-    else:
-        line.append(cnt)
-        cnt = 1
-        before = s
-
-if st[0] == "1":
-    start = 1
-else:
-    start = 2
-    ans = sum(line[1:2*k+1])
-
-for i in range(start, len(line)-2*k):
-    ans = max(ans, sum(line[i:i+2*k+1])) 
-
-if n <= k:
-    ans = n
-
-print(ans)
+from itertools import accumulate
+ 
+n, k = list(map(int, input().split()))
+s = input()
+ 
+def solve():
+    l = []
+    prev = '1'
+    cnt = 0
+    for c in s:
+        if prev == c:
+            cnt += 1
+        else:
+            l.append(cnt)
+            cnt = 1
+        prev = c
+    l.append(cnt)
+    if prev == '0':
+        l.append(0)
+ 
+    w = 2 * k + 1
+ 
+    if len(l) <= w:
+        return n
+ 
+    acc = [0] + list(accumulate(l))
+    ans = 0
+    for i in range(0, len(l) - w + 1, 2):
+        ans = max(ans, acc[i + w] - acc[i])
+    return ans
+ 
+ 
+print(solve())
