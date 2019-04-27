@@ -7,4 +7,3 @@ for (i, j) in zip(x, x[1:]):
 
 diff.sort(reverse=True)
 print(sum(diff[n-1:]))
-    
